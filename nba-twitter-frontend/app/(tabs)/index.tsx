@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Text, StyleSheet, View } from 'react-native';
+import { Text, StyleSheet, View, TextInput, Button } from 'react-native';
 import { getName } from '../api/api'
 
 export default function HomeScreen() {
@@ -10,21 +10,23 @@ export default function HomeScreen() {
       setName(fetchedName); 
     });
   }, []);
+  const [text, onChangeText] = useState('Enter name');
 
   return (
     <View style={styles.titleContainer}>
-      <Text style={styles.text}>Welcome, {name || 'Loading...'}!</Text>
+      <Text style={styles.text}>Welcome!</Text>
+      <TextInput style={styles.input} onChangeText = {onChangeText} value={text}></TextInput>
+      <Button title="Submit"></Button>
     </View>
   );
 }
 
-
-
 const styles = StyleSheet.create({
   titleContainer: {
     flex: 1,
-    flexDirection: 'row',
+    flexDirection: 'column',
     justifyContent: 'center',
+    backgroundColor: 'white',
     alignItems: 'center',
     gap: 8,
   },
@@ -33,8 +35,19 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   text: {
-    fontSize: 40,
+    fontSize: 72,
     fontWeight: 'bold',
     color: '#478'
+  }, 
+  input: {
+    color: '#478',
+    height: 40,
+    borderColor: 'gray',
+    borderWidth: 1,
+    marginRight: 10,
+    marginTop: 100,
+    marginBottom: 0,
+    paddingLeft: 10,
+    width: '70%',  // Ensure it's wide enough
   }
 });

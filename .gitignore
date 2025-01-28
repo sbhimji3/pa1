@@ -1,0 +1,31 @@
+# Learn more https://docs.github.com/en/get-started/getting-started-with-git/ignoring-files
+
+# dependencies
+nba-twitter-frontend/node_modules/
+
+# Expo
+nba-twitter-frontend/.expo/
+nba-twitter-frontend/dist/
+nba-twitter-frontend/web-build/
+nba-twitter-frontend/expo-env.d.ts
+
+# Native
+nba-twitter-frontend/*.orig.*
+nba-twitter-frontend/*.jks
+nba-twitter-frontend/*.p8
+nba-twitter-frontend/*.p12
+nba-twitter-frontend/*.key
+nba-twitter-frontend/*.mobileprovision
+
+# Metro
+nba-twitter-frontend/.metro-health-check*
+
+# debug
+nba-twitter-frontend/npm-debug.*
+nba-twitter-frontend/yarn-debug.*
+nba-twitter-frontend/yarn-error.*
+
+# macOS
+nba-twitter-frontend/.DS_Store
+nba-twitter-frontend/*.pem
+

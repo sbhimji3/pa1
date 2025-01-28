@@ -1,22 +1,28 @@
 import { useEffect, useState } from 'react';
 import { Text, StyleSheet, View, TextInput, Button } from 'react-native';
-import { getName } from '../api/api'
+import { postName } from '../api/api'
 
 export default function HomeScreen() {
-  const [name, setName] = useState('');
-
-  useEffect(() => {
-    getName().then(fetchedName => {
-      setName(fetchedName); 
-    });
-  }, []);
   const [text, onChangeText] = useState('Enter name');
+  const [responseMessage, setResponseMessage] = useState('');
+  const [welcomeMessage, setWelcomeMessage] = useState('Welcome!');
+
+  async function handleSubmit() {
+    const response = await postName(text);
+    if (response) {
+      setResponseMessage(`${response.name}: ${response.visits} total visits`);
+      setWelcomeMessage(``);
+    } else {
+      setResponseMessage('Error fetching data');
+    }
+  }
 
   return (
     <View style={styles.titleContainer}>
-      <Text style={styles.text}>Welcome!</Text>
+      <Text style={styles.text2}>{responseMessage}</Text>
+      <Text style={styles.text}>{welcomeMessage}</Text>
       <TextInput style={styles.input} onChangeText = {onChangeText} value={text}></TextInput>
-      <Button title="Submit"></Button>
+      <Button title="Submit" onPress={handleSubmit}></Button>
     </View>
   );
 }
@@ -37,6 +43,10 @@ const styles = StyleSheet.create({
   text: {
     fontSize: 72,
     fontWeight: 'bold',
+    color: '#478'
+  }, 
+  text2: {
+    fontSize: 36,
     color: '#478'
   }, 
   input: {

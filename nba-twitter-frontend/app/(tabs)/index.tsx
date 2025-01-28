@@ -1,12 +1,24 @@
+import { useEffect, useState } from 'react';
 import { Text, StyleSheet, View } from 'react-native';
+import { getName } from '../api/api'
 
 export default function HomeScreen() {
+  const [name, setName] = useState('');
+
+  useEffect(() => {
+    getName().then(fetchedName => {
+      setName(fetchedName); 
+    });
+  }, []);
+
   return (
     <View style={styles.titleContainer}>
-      <Text style={styles.text}>Welcome!</Text>
+      <Text style={styles.text}>Welcome, {name || 'Loading...'}!</Text>
     </View>
   );
 }
+
+
 
 const styles = StyleSheet.create({
   titleContainer: {

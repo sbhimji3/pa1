@@ -2,6 +2,9 @@
 
 # dependencies
 nba-twitter-frontend/node_modules/
+nba-twitter-server/node_modules/
+nba-twitter-server/functions/node_modules/
+nba-twitter-server/functions/*.local
 
 # Expo
 nba-twitter-frontend/.expo/

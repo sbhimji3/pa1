@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Text, StyleSheet, View, TextInput, Button } from 'react-native';
+import { Text, StyleSheet, View, TextInput, Button, Alert } from 'react-native';
 import { postName } from '../api/api'
 
 export default function HomeScreen() {
@@ -8,6 +8,8 @@ export default function HomeScreen() {
   const [welcomeMessage, setWelcomeMessage] = useState('Welcome!');
 
   async function handleSubmit() {
+    console.log('Button pressed');
+    alert(`Hello, ${text}`);
     const response = await postName(text);
     if (response) {
       setResponseMessage(`${response.name}: ${response.visits} total visits`);
@@ -21,8 +23,17 @@ export default function HomeScreen() {
     <View style={styles.titleContainer}>
       <Text style={styles.text2}>{responseMessage}</Text>
       <Text style={styles.text}>{welcomeMessage}</Text>
-      <TextInput style={styles.input} onChangeText = {onChangeText} value={text}></TextInput>
-      <Button title="Submit" onPress={handleSubmit}></Button>
+      <TextInput 
+        style={styles.input} 
+        onChangeText={onChangeText} 
+        value={text} 
+        placeholder="Enter name" 
+        placeholderTextColor="#888" 
+      />
+      <Button 
+        title="Submit" 
+        onPress={handleSubmit} 
+      />
     </View>
   );
 }
@@ -36,19 +47,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     gap: 8,
   },
-  stepContainer: {
-    gap: 8,
-    marginBottom: 8,
-  },
   text: {
     fontSize: 72,
     fontWeight: 'bold',
     color: '#478'
-  }, 
+  },
   text2: {
     fontSize: 36,
     color: '#478'
-  }, 
+  },
   input: {
     color: '#478',
     height: 40,
@@ -58,6 +65,6 @@ const styles = StyleSheet.create({
     marginTop: 100,
     marginBottom: 0,
     paddingLeft: 10,
-    width: '70%',  // Ensure it's wide enough
+    width: '70%',
   }
 });

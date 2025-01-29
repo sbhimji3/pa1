@@ -60,7 +60,7 @@ export default function HomeScreen() {
       <Text style={styles.recentSearchesTitle}>Recent Searches</Text>
       
       <FlatList
-        data={recentSearches?.slice(0, 3) || []}
+        data={recentSearches?.slice(-5) || []}
         renderItem={({ item }) => <Text style={styles.recentSearchText}>{item}</Text>}
         keyExtractor={(item, index) => index.toString()}
       />

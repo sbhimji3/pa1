@@ -33,3 +33,4 @@ nba-twitter-frontend/yarn-error.*
 nba-twitter-frontend/.DS_Store
 nba-twitter-frontend/*.pem
 
+node_modules
